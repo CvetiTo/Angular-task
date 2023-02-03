@@ -1,0 +1,40 @@
+<ng-container *ngIf="launchDetails$ | async as launchDetails">
+  <div class="container">
+    <header>
+      <h2>A Web Page</h2>
+      <i class="fa-solid fa-circle-left fa-xl"></i>
+      <i class="fa-solid fa-circle-right fa-xl"></i>
+      <i class="fa-solid fa-xmark fa-xl"></i>
+      <i class="fa-solid fa-house fa-xl"></i>
+      <input type="text" placeholder=" http://" class="input-field">
+      <input type="text" placeholder="  &#xF002;" style="font-family:Arial, FontAwesome" class="input-search">
+      <br>
+    </header>
+    <div class="sections">
+      <section style="padding-top: 20px;">
+        <h1><i class="fa-solid fa-angle-left"></i> {{ launchDetails.mission_name }}</h1>
+        <mat-card style="width: 400px; height: 550px;" class="card-circle">
+          <img mat-card-image [src]="launchDetails.links.flickr_images[0]" class="image-circle" style="margin: 20px;"
+            alt="Mission patch of {{ launchDetails.mission_name }}" />
+          <mat-card-content style="margin: 20px;">
+            <p>{{ launchDetails.details }}</p>
+          </mat-card-content>
+        </mat-card>
+      </section>
+      <section style="padding-top: 20px;">
+        <div style=" margin-top: 120px; margin-bottom: 80px;" class="img-big-div">
+          <img height="300" width="200" mat-card-image [src]="launchDetails.links.flickr_images[0]"
+            alt="Mission patch of {{ launchDetails.mission_name }}" class="img-big" />
+        </div>
+
+        <section class="photo-grid"><i class="fa-solid fa-chevron-left"></i>
+          <img *ngFor="let pic of launchDetails.links.flickr_images" [src]="pic"
+            alt="Picture of {{ launchDetails.mission_name }}" height="120" width="120" loading="lazy" />
+          <i class="fa-solid fa-chevron-right"></i>
+        </section>
+      </section>
+    </div>
+    <footer><i class="fa-solid fa-bolt"></i>
+    </footer>
+  </div>
+</ng-container>
